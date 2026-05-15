@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { subscribe, getSubscribers } = require('../controllers/newsletterController');
+const { subscribe, getSubscribers } = require('../controllers/newslettercontroller');
 const { protect, adminOnly } = require('../middleware/auth');
 
 // Public — subscribe
