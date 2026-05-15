@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { CheckCircle, XCircle, Loader2, Mail, RefreshCw } from 'lucide-react';
 import api from '../lib/api';
-import { useAuthStore } from '../stores/authStore';
+import { useAuthStore } from '../context/authStore';
 
 // ── State types ───────────────────────────────────────────────────────────────
 const STATE = {
