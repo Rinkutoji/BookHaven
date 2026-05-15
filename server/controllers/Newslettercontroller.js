@@ -1,4 +1,4 @@
-const Newsletter = require('../models/Newsletter');
+const Newsletter = require('../models/newsletter');
 
 // POST /api/newsletter/subscribe
 const subscribe = async (req, res, next) => {
