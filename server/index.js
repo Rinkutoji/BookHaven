@@ -18,7 +18,6 @@ const wishlistRoutes   = require('./routes/wishlist');
 const orderRoutes      = require('./routes/orders');
 const checkoutRoutes   = require('./routes/checkout');
 const searchRoutes     = require('./routes/search');
-const newsletterRoutes = require('./routes/newsletter'); // ← Newsletter (ថ្មី)
 
 const app = express();
 
@@ -85,7 +84,6 @@ app.use('/api/wishlist',   wishlistRoutes);
 app.use('/api/orders',     orderRoutes);
 app.use('/api/checkout',   checkoutRoutes);
 app.use('/api/search',     searchRoutes);
-app.use('/api/newsletter', newsletterRoutes); // ← Newsletter (ថ្មី)
 
 // 404 handler
 app.use((req, res) => {
