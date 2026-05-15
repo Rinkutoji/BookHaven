@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-ink bg-cream-50 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-cream-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-brand-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-brand-500; }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-500 text-white
+           font-body font-medium rounded-lg shadow-warm transition-all duration-200
+           hover:bg-brand-600 hover:shadow-warm-lg active:scale-[0.98] disabled:opacity-50
+           disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-brand-400
+           focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-cream-100 text-ink
+           font-body font-medium rounded-lg border border-cream-300 transition-all duration-200
+           hover:bg-cream-200 hover:border-cream-400 active:scale-[0.98] disabled:opacity-50
+           focus:outline-none focus:ring-2 focus:ring-brand-300 focus:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-ink-muted
+           font-body font-medium rounded-lg transition-all duration-200
+           hover:bg-cream-100 hover:text-ink active:scale-[0.98]
+           focus:outline-none focus:ring-2 focus:ring-brand-300;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl shadow-warm border border-cream-200 overflow-hidden;
+  }
+
+  /* Form inputs */
+  .input {
+    @apply w-full px-4 py-3 bg-white border border-cream-300 rounded-lg text-ink
+           placeholder-ink-muted/50 transition-all duration-200 font-body
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400
+           hover:border-cream-400;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-ink-muted mb-1.5;
+  }
+
+  /* Section headings */
+  .section-title {
+    @apply font-display text-3xl md:text-4xl text-ink font-semibold;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  /* Page container */
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* Book card hover lift */
+  .book-card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-warm-lg;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply animate-pulse bg-cream-200 rounded;
+  }
+
+  /* Divider with text */
+  .divider-text {
+    @apply relative flex items-center text-sm text-ink-muted;
+  }
+  .divider-text::before,
+  .divider-text::after {
+    @apply flex-1 border-t border-cream-300 content-[''];
+  }
+  .divider-text::before { @apply mr-3; }
+  .divider-text::after  { @apply ml-3; }
+}
