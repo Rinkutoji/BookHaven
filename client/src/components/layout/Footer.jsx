@@ -181,6 +181,8 @@ export default function Footer() {
                 <Mail size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-cream-500" />
                 <input
                   type="email"
+                  id="newsletter-email"
+                  name="newsletter-email"
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
