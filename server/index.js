@@ -31,6 +31,7 @@ app.use(helmet());
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:4173',
+  'https://book-haven-six-beige.vercel.app',
   process.env.CLIENT_URL,
 ].filter(Boolean);
 
