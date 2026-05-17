@@ -21,6 +21,9 @@ const searchRoutes     = require('./routes/search');
 
 const app = express();
 
+// Trust Render's proxy (fixes ERR_ERL_UNEXPECTED_X_FORWARDED_FOR)
+app.set('trust proxy', 1);
+
 // Connect to MongoDB
 connectDB();
 
@@ -70,6 +73,11 @@ app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+// ── Root route ────────────────────────────────────────────────────
+app.get('/', (req, res) => {
+  res.json({ message: '📚 BookHaven API is running', status: 'ok' });
+});
 
 // ── Health check ──────────────────────────────────────────────────
 app.get('/health', (req, res) => {
