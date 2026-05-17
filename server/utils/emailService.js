@@ -1,18 +1,6 @@
 // server/utils/emailService.js
-// Adds sendVerificationEmail() alongside your existing templates.
-// Uses SendGrid transport (already configured in your project).
-
-const nodemailer = require("nodemailer");
-
-// ── Transport (SendGrid) ──────────────────────────────────────────
-const transporter = nodemailer.createTransport({
-  host: "smtp.sendgrid.net",
-  port: 587,
-  auth: {
-    user: "apikey",
-    pass: process.env.SENDGRID_API_KEY,
-  },
-});
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // ── Shared HTML wrapper ───────────────────────────────────────────
 const wrap = (body) => `
@@ -45,11 +33,10 @@ const wrap = (body) => `
 </body>
 </html>`;
 
-// ── sendVerificationEmail  ← NEW ──────────────────────────────────
+// ── sendVerificationEmail ─────────────────────────────────────────
 exports.sendVerificationEmail = async (user, token) => {
   const verifyUrl = `${process.env.CLIENT_URL}/verify-email/${token}`;
-
-  await transporter.sendMail({
+  await sgMail.send({
     from: process.env.EMAIL_FROM,
     to: user.email,
     subject: "Verify your BookHaven email address",
@@ -67,8 +54,7 @@ exports.sendVerificationEmail = async (user, token) => {
 // ── sendPasswordResetEmail ────────────────────────────────────────
 exports.sendPasswordResetEmail = async (user, token) => {
   const resetUrl = `${process.env.CLIENT_URL}/reset-password/${token}`;
-
-  await transporter.sendMail({
+  await sgMail.send({
     from: process.env.EMAIL_FROM,
     to: user.email,
     subject: "Reset your BookHaven password",
@@ -96,7 +82,7 @@ exports.sendOrderConfirmation = async (user, order) => {
     )
     .join("");
 
-  await transporter.sendMail({
+  await sgMail.send({
     from: process.env.EMAIL_FROM,
     to: user.email,
     subject: `Order Confirmed — ${order.orderNumber}`,
@@ -126,7 +112,7 @@ exports.sendOrderConfirmation = async (user, order) => {
 
 // ── sendShippingNotification ──────────────────────────────────────
 exports.sendShippingNotification = async (user, order) => {
-  await transporter.sendMail({
+  await sgMail.send({
     from: process.env.EMAIL_FROM,
     to: user.email,
     subject: `Your BookHaven order ${order.orderNumber} has shipped!`,
